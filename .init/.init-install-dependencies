@@ -1,0 +1,4 @@
+{
+    "command": "npm install",
+    "working_directory": "/tmp/kavia/workspace/code-generation/cooking-companion-5954-6314/cooking_tracker_frontend"
+}
