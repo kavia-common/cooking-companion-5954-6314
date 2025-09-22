@@ -1,82 +1,60 @@
-# Lightweight React Template for KAVIA
+# Cooking Companion Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A lightweight React UI to manage recipes and cooking-related todo lists.
 
 ## Features
+- Recipe management: list, search, create, edit, delete
+- Todo list for cooking tasks: add, edit inline, toggle complete, delete
+- Clean, responsive UI with built-in light/dark theme (persists)
+- Environment-driven API base URL
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+## Quick Start
+- Install: `npm install`
+- Run: `npm start`
+- Build: `npm run build`
+- Test: `npm test`
 
-## Getting Started
+## Backend Configuration
+Set the following environment variable for the frontend:
+- REACT_APP_API_BASE: Base URL for the backend REST API. Defaults to `/api` to support dev proxying.
 
-In the project directory, you can run:
+Examples:
+- `.env.development`:
+  ```
+  REACT_APP_API_BASE=http://localhost:8000
+  ```
+- `.env.production`:
+  ```
+  REACT_APP_API_BASE=https://api.example.com
+  ```
 
-### `npm start`
+Expected REST Endpoints:
+- Recipes:
+  - GET    {BASE}/recipes
+  - POST   {BASE}/recipes
+  - GET    {BASE}/recipes/:id
+  - PUT    {BASE}/recipes/:id
+  - DELETE {BASE}/recipes/:id
+- Todos:
+  - GET    {BASE}/todos
+  - POST   {BASE}/todos
+  - PUT    {BASE}/todos/:id
+  - DELETE {BASE}/todos/:id
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Response bodies should be JSON.
 
-### `npm test`
+## Project Structure
+- `src/services/api.js`: Minimal API client
+- `src/services/ApiContext.js`: Context provider and hook
+- `src/hooks/useLocalStorage.js`: Persistence helper
+- `src/components/recipes/RecipeList.js`: Recipes index with actions
+- `src/components/recipes/RecipeEditor.js`: Create/update form
+- `src/components/todos/TodoList.js`: Cooking todo list
+- `src/App.js`: Wiring, simple navigation, theming
 
-Launches the test runner in interactive watch mode.
+## Accessibility
+- Keyboard accessible forms and buttons
+- Semantic headings, labels, and ARIA alerts for errors
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Notes
+This UI assumes a functioning backend; if it is not yet available, you can stub endpoints or configure a mock server at `REACT_APP_API_BASE`.
